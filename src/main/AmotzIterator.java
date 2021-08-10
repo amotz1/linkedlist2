@@ -2,26 +2,31 @@ package main;
 
 import java.util.Iterator;
 
-public class AmotzIterator implements Iterator<Object> {
-	private Link current; 
-	
-	public AmotzIterator(Link head) {
-		this.current = head;
+class AmotzIterator implements Iterator<Object> {
+	private Link current;
+
+	AmotzIterator(Link head) {
+		current = head;
 	}
 
 	public boolean hasNext() {
 
-		if (this.current.getNext() == null)
+		if (current.next == null)
 			return false;
-		
+
 		else
 			return true;
 	}
 
-	public Link next() {
-		Link tempLink = this.current;
-		this.current = this.current.getNext();
-		return tempLink;
+	public Object next() {
+		Link tempLink = current;
+		
+		if (current == null) {
+			return null;
+		}
+		
+		current = current.next;
+		return tempLink.value;
 	}
 
 }
