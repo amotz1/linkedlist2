@@ -10,7 +10,7 @@ public class LinkedList {
 		size += 1;
 
 		if (head == null) {
-			assert (tail == null);
+			assert tail == null;
 
 			head = newLink;
 			tail = newLink;
@@ -31,9 +31,9 @@ public class LinkedList {
 	}
 
 	public void remove(int value) {
-		Link current = head;
-		for (int i = 1; i <= size; i++) {
-			if (current.value == value) {
+		for (Link link = head; link != null; link = link.next) {
+
+			if (link.value == value) {
 
 				if (size == 1) {
 					head = null;
@@ -43,42 +43,43 @@ public class LinkedList {
 
 				}
 
-				if (current.value == head.value) {
-					current.next.previous = null;
-					head = current.next;
+				if (link.value == head.value) {
+					link.next.previous = null;
+					head = link.next;
 
 					break;
 
 				}
 
-				else if (current.value == tail.value) {
-					current.previous.next = null;
-					tail = current.previous;
-					
+				else if (link.value == tail.value) {
+					link.previous.next = null;
+					tail = link.previous;
+
 					break;
 				}
 
 				else {
-					current.previous.next = current.next;
-					current.next.previous = current.previous;
-					
+					link.previous.next = link.next;
+					link.next.previous = link.previous;
+
 					break;
 				}
 			}
 
 			else {
-				current = current.next;
+				if (link == tail) {
+					break;
+				}
 			}
 
 		}
 
 		size -= 1;
-
 	}
 
 	public Boolean isEmpty(LinkedList list) {
 		if (head == null) {
-			assert (tail == null);
+			assert tail == null;
 			return true;
 		}
 

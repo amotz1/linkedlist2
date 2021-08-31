@@ -22,7 +22,7 @@ class AmotzIterator implements Iterator<Object> {
 		Link tempLink = current;
 		
 		if (current == null) {
-			return null;
+			assert hasNext();
 		}
 		
 		current = current.next;
